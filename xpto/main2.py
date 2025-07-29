@@ -27,13 +27,12 @@ agent_slip = Agent(
 if agent_slip.knowledge is not None:
     agent_slip.knowledge.load()
 
-# agent_slip.print_response("What is her company name?", stream=True)
-
-app = Playground(
-    agents = [
-        agent_slip,
-    ]
-).get_app(use_async=True)
-
-if __name__ == "__main__":
-    serve_playground_app("main3:app", reload=True)
+print("Agno Playground PDF - Pergunte sobre o conteúdo dos seus PDFs (digite 'sair' para encerrar)\n")
+while True:
+    pergunta = input("Pergunta: ")
+    if pergunta.lower() in ["sair", "exit", "quit"]:
+        print("Saindo do playground.")
+        break
+    print("\nResposta:")
+    agent_slip.print_response(pergunta, markdown=True)
+    print("-" * 60)
