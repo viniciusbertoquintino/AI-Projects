@@ -13,8 +13,10 @@ Este projeto utiliza modelos pré-treinados da Hugging Face para classificar sen
 
     1. Clone o repositório:
 
-        git clone https://github.com/seu-usuario/sentiment-classifier.git
-        cd sentiment-classifier
+        git clone https://github.com/viniciusbertoquintino/AI-Projects.git
+        
+        cd AI-Projects/sentiment-classifier
+
 
     2. Instale as dependências:
 
