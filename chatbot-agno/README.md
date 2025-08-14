@@ -19,8 +19,8 @@ Este projeto implementa um chatbot inteligente de perguntas frequentes sobre Pyt
 
     1. Clone o repositório:
 
-        git clone https://github.com/viniciusbertoquintino/AI-Projects/faq-chatbot-agno.git
-        cd faq-chatbot-agno
+        git clone https://github.com/viniciusbertoquintino/AI-Projects/chatbot-agno.git
+        cd chatbot-agno
 
     2 . Instale as dependências:
 
