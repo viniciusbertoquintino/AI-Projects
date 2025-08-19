@@ -1,23 +1,20 @@
 import os
 from github import Github
 from dotenv import load_dotenv
-from openai import OpenAI
+from groq import Groq
 
 # Carregar variáveis de ambiente
 load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-print(f"GITHUB_TOKEN: {GITHUB_TOKEN}")
-print(f"OPENAI_API_KEY: {OPENAI_API_KEY}")
-
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # Validar tokens
-if not GITHUB_TOKEN or not OPENAI_API_KEY:
-    raise ValueError("GITHUB_TOKEN ou OPENAI_API_KEY não encontrados. Verifique o arquivo .env.")
+if not GITHUB_TOKEN or not GROQ_API_KEY:
+    raise ValueError("GITHUB_TOKEN ou GROQ_API_KEY não encontrados. Verifique o arquivo .env.")
 
 # Inicializar clientes
 g = Github(GITHUB_TOKEN)
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = Groq(api_key=GROQ_API_KEY)
 
 # Nome do repositório
 repo_name = "viniciusbertoquintino/AI-Projects"
@@ -38,7 +35,7 @@ try:
         for file in latest_commit.files if file.patch
     ])
 
-    # Gerar sugestão de mensagem de commit com OpenAI
+    # Gerar sugestão de mensagem de commit com Groq
     prompt = (
         "Você é um assistente que escreve mensagens de commit claras e concisas no estilo Conventional Commits.\n"
         "Com base nas seguintes modificações de código, gere uma sugestão de mensagem de commit:\n\n"
@@ -46,7 +43,7 @@ try:
     )
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="llama3-8b-8192",  # ou "mixtral-8x7b-32768"
         messages=[
             {"role": "system", "content": "Você é um assistente útil que escreve mensagens de commit para desenvolvedores."},
             {"role": "user", "content": prompt}
